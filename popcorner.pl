@@ -48,16 +48,6 @@ if ( $ARGV[0] =~ /--update.*/ ) {
 	_copy( "/tmp/popcorn/*", "/opt/Popcorn-Time", 0, 1 ) or _dieRed("Failed to copy: /tmp/popcorn/* -> /opt/Popcorn-Time");
 	createMenuEntry();
 	_copy( "/tmp/popcorn/popcorntime.desktop", "/usr/share/applications/", 0, 1 ) or _dieRed("Failed to copy: /tmp/popcorn/popcorntime.desktop -> /usr/share/applications/");
-	_printGreen("Do you want to auto update popcorn, when there is a new release? [y/n]: ", 0, 1);
-	autoUpdate();
-
-	if ( $AUTO_UPDATE == 1 ) {
-
-		createTmpDataFile();
-		_copy( "/tmp/popcorn/data", "/opt/Popcorn-Time/data", 0, 1 );
-
-	}
-
 	_printGreen("Cleaning temporary files");
 	_delete("/tmp/popcorn/") or _dieRed("Failed to delete /tmp/popcorn/");
 	_printGreen("Popcorn-Time installed successfully!");
